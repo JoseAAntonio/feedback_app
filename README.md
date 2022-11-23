@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+<h1> React front to back </h1>
+
+<h2>Project based course by Brad Traversy</h2>
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
