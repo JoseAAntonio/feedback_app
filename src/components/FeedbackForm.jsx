@@ -3,7 +3,7 @@ import { RatingSelect } from "./RatingSelect";
 import { Button } from "./Shared/Button";
 import { Card } from "./Shared/Card";
 
-export const FeedbackForm = () => {
+export const FeedbackForm = ({ handleAdd }) => {
 	const [text, setText] = useState("");
 	const [rating, setRating] = useState(10);
 	//NOTE - form realtime validation
@@ -24,9 +24,23 @@ export const FeedbackForm = () => {
 		setText(e.target.value);
 	};
 
+	//NOTE - on submit we´re pushing the text and rating tiped in by the user into a new object (newFeedback)
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (text.trim().length > 10) {
+			const newFeedback = {
+				text,
+				rating,
+			};
+			handleAdd(newFeedback);
+
+			setText("");
+		}
+	};
+
 	return (
 		<Card>
-			<form>
+			<form onSubmit={handleSubmit}>
 				<h2>How would you rate our services?</h2>
 				<RatingSelect select={(rating) => setRating(rating)} />
 				<div className="input-group">
