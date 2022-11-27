@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { RatingSelect } from "./RatingSelect";
 import { Button } from "./Shared/Button";
 import { Card } from "./Shared/Card";
+import FeddbackContext from "./context/FeedbackContext";
 
-export const FeedbackForm = ({ handleAdd }) => {
+export const FeedbackForm = () => {
+	const { addFeedback } = useContext(FeddbackContext);
+
 	const [text, setText] = useState("");
 	const [rating, setRating] = useState(10);
 	//NOTE - form realtime validation
@@ -32,7 +35,7 @@ export const FeedbackForm = ({ handleAdd }) => {
 				text,
 				rating,
 			};
-			handleAdd(newFeedback);
+			addFeedback(newFeedback);
 
 			setText("");
 		}
