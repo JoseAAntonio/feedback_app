@@ -22,6 +22,13 @@ export const FeedbackProvider = ({ children }) => {
 		},
 	]);
 
+	//NOTE - global state set to edit our review
+	const [feedbackEdit, setFeedbackEdit] = useState({
+		//NOTE - the empity object will receive the item we want to edit
+		item: {},
+		edit: false,
+	});
+
 	const addFeedback = (newFeedback) => {
 		newFeedback.id = uuidv4();
 		//NOTE - populating the feedback with the user input
@@ -33,12 +40,21 @@ export const FeedbackProvider = ({ children }) => {
 			setFeedback(feedback.filter((item) => item.id !== id));
 	};
 
+	//NOTE - set item to be updated
+	const editFeedback = (item) => {
+		setFeedbackEdit({
+			item,
+			edit: true,
+		});
+	};
+
 	return (
 		<FeddbackContext.Provider
 			value={{
 				feedback,
 				deleteFeedback,
 				addFeedback,
+				editFeedback,
 			}}
 		>
 			{children}
